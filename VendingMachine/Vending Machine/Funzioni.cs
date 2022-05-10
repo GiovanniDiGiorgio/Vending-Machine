@@ -57,7 +57,7 @@ namespace Vending_Machine
 		public static void Compra()
 		{
 			int e = 0;
-			
+			Console.WriteLine("Resto totale disponibile: \n"+ Credito.credito);
 			Console.WriteLine("Quale prodotto vuoi acquistare?: \n");
 			Console.WriteLine("Premi 1 per Fanta");
 			Console.WriteLine("Premi 2 per Coca Cola");
@@ -123,7 +123,9 @@ namespace Vending_Machine
 										}
 										else
 										{
+
 											Console.WriteLine("il tuo resto è pari a: " + Decimal.Round(resto2,3));
+                                            if (resto2 > Credito.credito) { Console.WriteLine("Resto non disponibile "); }
 											Prodotti.fanta--;
 											Console.WriteLine("Prodotto in erogazione.....Le fanta rimaste sono: " + Prodotti.fanta + " le Coca Cola rimaste sono: " + Prodotti.cocaCola + "\n");
 											
@@ -133,7 +135,7 @@ namespace Vending_Machine
 									else
 									{
 										Console.WriteLine("il tuo resto è pari a: " + Decimal.Round(s, 3));
-										
+										if (s > Credito.credito) { Console.WriteLine("Resto non disponibile "); }
 										Menu.menu();
 									}
 								}
@@ -154,7 +156,7 @@ namespace Vending_Machine
 						}
 						else {
 							Console.WriteLine("il tuo resto è pari a: " + Decimal.Round(resto, 3));
-
+							if (resto > Credito.credito) { Console.WriteLine("Resto non disponibile "); }
 							Prodotti.fanta--;
 							Credito.credito += Prodotti.prezzoFanta;
 
@@ -231,6 +233,7 @@ namespace Vending_Machine
 										else
 										{
 											Console.WriteLine("il tuo resto è pari a: " + Decimal.Round(resto2,3));
+											if (resto2 > Credito.credito) { Console.WriteLine("Resto non disponibile "); }
 											Prodotti.cocaCola--;
 											Console.WriteLine("Prodotto in erogazione.....Le fanta rimaste sono: " + Prodotti.fanta + " le Coca Cola rimaste sono: " + Prodotti.cocaCola + "\n");
 											
@@ -248,6 +251,7 @@ namespace Vending_Machine
 								else
 								{
 									Console.WriteLine("il tuo resto è pari a: " + resto);
+									if (resto > Credito.credito) { Console.WriteLine("Resto non disponibile "); }
 									Prodotti.cocaCola--;
 									Credito.credito += Prodotti.prezzoCocaCola;
 									Console.WriteLine("Prodotto in erogazione.....Le fanta rimaste sono: " + Prodotti.fanta + " le Coca Cola rimaste sono: " + Prodotti.cocaCola + "\n");
@@ -264,7 +268,7 @@ namespace Vending_Machine
 						else
 						{
 							Console.WriteLine("il tuo resto è pari a: " + Decimal.Round(resto, 3));
-
+							if (resto > Credito.credito) { Console.WriteLine("Resto non disponibile "); }
 							Prodotti.cocaCola--;
 							Credito.credito += Prodotti.prezzoCocaCola;
 

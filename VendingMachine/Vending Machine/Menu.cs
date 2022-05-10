@@ -6,13 +6,34 @@ namespace Vending_Machine
 {
 	public class Menu
 	{
+		private static string _password="";
+		public static string password
+        {
+			get { return _password; }	
+			set { _password = value; }
+        }
+		public static void impostaPassword()
+        {
+			Console.WriteLine("Questo è il tuo primo accesso, imposta una password: ");
+			password = Console.ReadLine();
+		}
 
 		static public void menu()
 		{
 			int a = 0;
 			int b = 0;
+			
+			
+
+			if (Menu.password == "")
+			{
+				Menu.impostaPassword();
+				
+			}
 			do
 			{
+				
+
 				Console.WriteLine("scegli una delle seguenti opzioni:");
 				Console.WriteLine("permi 1 per Caricare macchina");
 				Console.WriteLine("permi 2 prelevare denaro");
@@ -23,20 +44,42 @@ namespace Vending_Machine
 
 				if (a == 1)
 				{
-					Console.WriteLine("Desideri caricare la macchina?");
-					Console.WriteLine("Premi 1 per ok");
-					Console.WriteLine("Premi 2 per annullare");
-					b = Convert.ToInt32(Console.ReadLine());
+					string pas = "";
+					Console.WriteLine("inserire password");
+					pas = Console.ReadLine();
+					if (pas == password)
+					{
+						Console.WriteLine("Desideri caricare la macchina?");
+						Console.WriteLine("Premi 1 per ok");
+						Console.WriteLine("Premi 2 per annullare");
+						b = Convert.ToInt32(Console.ReadLine());
 
-					Funzioni.CaricaMacchina(b); //Funzione caricaMAcchina
+						Funzioni.CaricaMacchina(b); //Funzione caricaMAcchina
+					}
+					else
+					{
+						Console.WriteLine("password errata");
+						Menu.menu();
+					}
+					
 
 
 				}
 
 				else if (a == 2)
 				{
+					string pas = "";
+					Console.WriteLine("inserire password");
+					pas = Console.ReadLine();
+					if (pas == password) { 
 					//Funzione preleva denaro
 					Funzioni.Preleva();
+					}
+                    else
+                    {
+						Console.WriteLine("password errata");
+						Menu.menu();
+                    }
 				}
 
 				else if (a == 3)
@@ -47,8 +90,19 @@ namespace Vending_Machine
 
 				else if (a == 4)
 				{
-
-					Funzioni.VisualizzaCredito();
+					string pas = "";
+					Console.WriteLine("inserire password");
+					pas = Console.ReadLine();
+					if (pas == password)
+					{
+						Funzioni.VisualizzaCredito();
+					}
+					else
+					{
+						Console.WriteLine("password errata");
+						Menu.menu();
+					}
+					
 				}
 				else { Menu.menu(); }	
 
